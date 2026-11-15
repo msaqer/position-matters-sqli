@@ -1,0 +1,41 @@
+id,text,true_label,source,style
+B001,"SELECT id, username, email FROM users WHERE id = 42;",benign,benign,human_style
+B002,SELECT COUNT(*) FROM orders WHERE status = 'shipped';,benign,benign,human_style
+B003,"SELECT name, price FROM products WHERE price < 100 ORDER BY price ASC;",benign,benign,human_style
+B004,UPDATE users SET last_login = NOW() WHERE id = 42;,benign,benign,human_style
+B005,"INSERT INTO orders (user_id, total) VALUES (42, 19.99);",benign,benign,human_style
+B006,"SELECT o.id, u.username FROM orders o JOIN users u ON o.user_id = u.id WHERE o.id = 100;",benign,benign,human_style
+B007,DELETE FROM sessions WHERE expires_at < NOW();,benign,benign,human_style
+B008,"SELECT category, COUNT(*) FROM products GROUP BY category;",benign,benign,human_style
+B009,SELECT AVG(total) FROM orders WHERE user_id = 42;,benign,benign,human_style
+B010,SELECT * FROM products WHERE category = 'books' LIMIT 20;,benign,benign,human_style
+B011,UPDATE products SET stock = stock - 1 WHERE id = 555;,benign,benign,human_style
+B012,SELECT username FROM users WHERE email = 'alice@example.com';,benign,benign,human_style
+B013,SELECT DISTINCT country FROM users ORDER BY country;,benign,benign,human_style
+B014,SELECT MAX(created_at) FROM orders WHERE user_id = 42;,benign,benign,human_style
+B015,"INSERT INTO payments (order_id, amount, method) VALUES (100, 19.99, 'card');",benign,benign,human_style
+B016,"SELECT p.name, o.total FROM orders o JOIN products p ON o.product_id = p.id WHERE o.user_id = 42;",benign,benign,human_style
+B017,"SELECT id, title FROM products WHERE stock > 0 ORDER BY title;",benign,benign,human_style
+B018,UPDATE users SET email = 'bob@example.com' WHERE id = 7;,benign,benign,human_style
+B019,SELECT COUNT(DISTINCT user_id) FROM orders;,benign,benign,human_style
+B020,SELECT * FROM users WHERE created_at >= '2026-01-01' ORDER BY created_at DESC;,benign,benign,human_style
+B021,"SELECT u.id, u.username, u.email FROM users AS u WHERE u.id = ?;",benign,benign,llm_style
+B022,SELECT COUNT(*) AS shipped_orders FROM orders WHERE status = 'shipped';,benign,benign,llm_style
+B023,"SELECT p.name, CAST(p.price AS DECIMAL(10,2)) AS price FROM products AS p WHERE p.price < 100 ORDER BY p.price ASC;",benign,benign,llm_style
+B024,UPDATE users SET last_login = CURRENT_TIMESTAMP WHERE id = ?;,benign,benign,llm_style
+B025,"INSERT INTO orders (user_id, total) VALUES (?, ?);",benign,benign,llm_style
+B026,"SELECT o.id AS order_id, u.username FROM orders AS o INNER JOIN users AS u ON o.user_id = u.id WHERE o.id = ?;",benign,benign,llm_style
+B027,DELETE FROM sessions WHERE expires_at < CURRENT_TIMESTAMP;,benign,benign,llm_style
+B028,"SELECT category, COUNT(*) AS n FROM products GROUP BY category ORDER BY n DESC;",benign,benign,llm_style
+B029,SELECT AVG(total) AS avg_total FROM orders WHERE user_id = ?;,benign,benign,llm_style
+B030,"SELECT p.id, p.name FROM products AS p WHERE p.category = 'books' LIMIT 20 OFFSET 0;",benign,benign,llm_style
+B031,UPDATE products SET stock = stock - 1 WHERE id = ? AND stock > 0;,benign,benign,llm_style
+B032,SELECT u.username FROM users AS u WHERE u.email = ?;,benign,benign,llm_style
+B033,SELECT DISTINCT u.country FROM users AS u ORDER BY u.country ASC;,benign,benign,llm_style
+B034,SELECT MAX(o.created_at) AS last_order FROM orders AS o WHERE o.user_id = ?;,benign,benign,llm_style
+B035,"INSERT INTO payments (order_id, amount, method) VALUES (?, ?, ?);",benign,benign,llm_style
+B036,"SELECT p.name, o.total FROM orders AS o INNER JOIN products AS p ON o.product_id = p.id WHERE o.user_id = ?;",benign,benign,llm_style
+B037,"SELECT p.id, p.title FROM products AS p WHERE p.stock > 0 ORDER BY p.title ASC;",benign,benign,llm_style
+B038,UPDATE users SET email = ? WHERE id = ?;,benign,benign,llm_style
+B039,SELECT COUNT(DISTINCT o.user_id) AS unique_buyers FROM orders AS o;,benign,benign,llm_style
+B040,"SELECT u.id, u.username FROM users AS u WHERE u.created_at >= ? ORDER BY u.created_at DESC;",benign,benign,llm_style

@@ -1,0 +1,9 @@
+family,n,frontier_review_time,frontier_runtime_gatekeeper,frontier_post_hoc,small_review_time,small_runtime_gatekeeper,small_post_hoc
+auth_bypass,18,61,78,61,50,94,56
+blind_boolean,14,14,50,79,0,14,36
+encoding_obf,9,100,100,100,78,100,89
+error_based,11,100,100,100,64,91,64
+file_os,16,100,100,100,75,100,75
+stacked,23,100,100,100,48,91,39
+time_based,23,100,100,100,100,100,52
+union_exfil,21,71,52,24,5,38,33

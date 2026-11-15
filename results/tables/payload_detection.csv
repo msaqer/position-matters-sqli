@@ -1,0 +1,7 @@
+detector,position,flagged,n_payloads
+frontier,review_time,11,12
+frontier,runtime_gatekeeper,10,12
+frontier,post_hoc,10,12
+small,review_time,6,12
+small,runtime_gatekeeper,8,12
+small,post_hoc,6,12

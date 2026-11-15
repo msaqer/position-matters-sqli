@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite the paper listed under preferred-citation."
+type: software
+title: "Code and data for Position Matters: Evaluating Large Language Models as SQL Injection Detectors Across Deployment Positions"
+authors:
+  - family-names: Abusaqer
+    given-names: Muhammad
+    affiliation: Minot State University
+version: 1.0.0
+license:
+  - MIT
+  - CC-BY-4.0
+repository-code: "https://github.com/msaqer/position-matters-sqli"
+keywords:
+  - SQL injection
+  - large language models
+  - LLM-generated SQL
+  - deployment position
+  - prompt injection
+preferred-citation:
+  type: conference-paper
+  title: "Position Matters: Evaluating Large Language Models as SQL Injection Detectors Across Deployment Positions"
+  authors:
+    - family-names: Abusaqer
+      given-names: Muhammad
+      affiliation: Minot State University
+  collection-title: "2026 IEEE International Conference on Big Data (BigData)"
+  conference:
+    name: "2026 IEEE International Conference on Big Data (BigData)"
+    city: Phoenix
+    region: AZ
+    country: US
+  publisher:
+    name: IEEE
+  year: 2026
+  month: 12

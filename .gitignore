@@ -1,0 +1,14 @@
+# Script outputs (the released files live in data/ and results/)
+outputs/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Local settings and secrets
+.env
+.idea/
+.vscode/

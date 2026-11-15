@@ -1,0 +1,3 @@
+# Keep the released data, logs, and tables byte for byte (no line-ending conversion).
+data/** -text
+results/** -text

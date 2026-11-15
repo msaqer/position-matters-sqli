@@ -1,0 +1,7 @@
+detector,position,calls,judged_queries,latency_ms_per_call,latency_ms_per_query,tokens_in,tokens_out,cost_usd,cost_usd_per_1k_queries
+frontier,review_time,639,639,1829,1829,69555,64293,1.14,1.78
+frontier,runtime_gatekeeper,639,639,1051,1051,54219,23700,0.49,0.77
+frontier,post_hoc,66,639,3768,389,24315,18264,0.33,0.52
+small,review_time,639,639,3040,3040,87708,43458,0.00,0.00
+small,runtime_gatekeeper,639,639,240,240,69816,1665,0.00,0.00
+small,post_hoc,66,639,750,77,26799,576,0.00,0.00

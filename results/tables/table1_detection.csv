@@ -1,0 +1,7 @@
+detector,position,detected,n_malicious,detection_pct,detection_ci_low_pct,detection_ci_high_pct,false_positives,n_benign,fpr_pct,fpr_ci_low_pct,fpr_ci_high_pct,f1
+frontier,review_time,110,135,81.5,74,87,4,66,6.1,2,15,0.88
+frontier,runtime_gatekeeper,114,135,84.4,77,90,8,66,12.1,6,22,0.89
+frontier,post_hoc,109,135,80.7,73,87,15,66,22.7,14,34,0.84
+small,review_time,70,135,51.9,43,60,6,66,9.1,4,18,0.66
+small,runtime_gatekeeper,106,135,78.5,71,85,15,66,22.7,14,34,0.83
+small,post_hoc,70,135,51.9,43,60,11,66,16.7,10,27,0.65

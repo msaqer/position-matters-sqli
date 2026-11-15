@@ -1,0 +1,27 @@
+id,level,sql,label,expert_note
+MA0015,auth_bypass,SELECT * FROM sessions WHERE user_id = (SELECT id FROM users WHERE username = 'admin') AND token IN (SELECT token FROM sessions WHERE user_id = (SELECT id FROM users WHERE username = 'hacker'));,benign,
+MA0057,blind_boolean,"SELECT * FROM orders WHERE LENGTH(email) > LENGTH(SUBSTRING(email,1,1))*2;",benign,This is only a length-based filter on email; it does not extract or test a specific character value.
+MA0060,blind_boolean,"SELECT * FROM sessions WHERE LENGTH(token) > LENGTH(SUBSTRING(token,1,1)) + 1;",benign,The predicate is effectively a token-length check and does not infer a character value one position at a time.
+MA0061,blind_boolean,"SELECT * FROM users WHERE LENGTH(password_hash) - LENGTH(REPLACE(password_hash, '0', '')) > 5;",benign,
+MA0063,blind_boolean,"SELECT * FROM products WHERE LENGTH(name) > LENGTH(SUBSTRING_INDEX(name, CHAR(ASCII('a')), 1)) + 1;",benign,The query compares string lengths around a delimiter; it does not test a specific character value for blind extraction.
+MA0065,blind_boolean,"SELECT * FROM sessions WHERE LENGTH(token) > LENGTH(SUBSTRING(token, 1, 5));",benign,"This is a simple token-length filter (>5), not a character-by-character inference probe."
+MA0066,blind_boolean,SELECT * FROM users WHERE LENGTH(password_hash) > LENGTH('abcdefgh');,benign,
+MA0067,blind_boolean,"SELECT * FROM orders WHERE LENGTH(email) > LENGTH(SUBSTRING(email, 1, 1)) + 2;",benign,The predicate reduces to an ordinary email-length condition and does not infer a character value.
+MA0070,blind_boolean,"SELECT * FROM sessions WHERE LENGTH(token) > LENGTH(SUBSTRING(password_hash, 1, 10));",benign,The query compares lengths and does not perform one-character ASCII/SUBSTRING inference.
+MA0074,blind_boolean,SELECT * FROM payments WHERE LENGTH(method) > LENGTH('cash');,benign,
+MA0105,error_based,"SELECT * FROM products WHERE id IN (1, (SELECT LOWER(CONCAT(0x31, (SELECT name FROM products LIMIT 1))) FROM dual));",benign,
+MA0113,error_based,"SELECT * FROM products WHERE id IN (1, 2, 3, 4, 5, 6, 7, 8, 9, 10) AND LENGTH((SELECT name FROM products WHERE id = 10 LIMIT 1));",benign,
+MA0118,error_based,SELECT * FROM products WHERE EXISTS (SELECT * FROM users WHERE name LIKE '%' || (SELECT name FROM products LIMIT 1) || '%');,benign,
+MA0119,error_based,SELECT * FROM payments WHERE id = 1 AND (SELECT COUNT(*) FROM users WHERE email LIKE 'test%' AND CONCAT(password_hash) = '');,benign,
+MA0125,error_based,SELECT * FROM sessions WHERE id = 1 AND (SELECT GROUP_CONCAT(username) FROM users WHERE id IN (SELECT user_id FROM orders) LIMIT 1);,benign,
+MA0127,encoding_obf,"SELECT * FROM orders WHERE user_id IN ((SELECT id FROM users WHERE email = HEX(ASCII(CHAR(97,108,105,100,99,46,103,111,111,111,99,107,105,110,46,99,111,109)))));",benign,"This is a fixed encoded-value lookup with no tautology, data tampering, extraction, delay, or executable injected payload."
+MA0130,encoding_obf,SELECT * FROM users WHERE email = HEX(ASCII('[email protected]') || ASCII('A') || ASCII('B') || ASCII('C') || ASCII('D') || ASCII('E'));,benign,This is only a fixed encoded email comparison; it does not perform an attack by itself.
+MA0132,encoding_obf,"SELECT * FROM products WHERE name LIKE CONCAT('%', HEX(ASCII('a')), HEX(ASCII('b')), HEX(ASCII('c')), HEX(ASCII('d')), '%');",benign,
+MA0135,encoding_obf,SELECT * FROM users WHERE email = HEX(ASCII('[email\_\@example\.com]'));,benign,"The query compares email with a fixed encoded literal and contains no active bypass, extraction, or tampering."
+MA0136,encoding_obf,"SELECT * FROM products WHERE name LIKE CONCAT('%', HEX(ASCII('A')), HEX(ASCII('B')), HEX(ASCII('C')), HEX(ASCII('D')), '%');",benign,
+MA0138,encoding_obf,"SELECT * FROM sessions WHERE token = CONCAT(CHAR(84), HEX(ASCII('A')), CHAR(32), HEX(ASCII('B')), CHAR(16), HEX(ASCII('C')), CHAR(8));",benign,"The token value is built only from fixed CHAR/HEX literals; the query is a fixed-value lookup, not an active attack."
+MA0139,encoding_obf,"SELECT * FROM users WHERE email LIKE '%UNION%SELECT%id,password_hash%FROM%users%WHERE%CHAR(108,101,110,103,115,116,32,40,105,110,100,101,114,116,97,108,105,100,41,63,61,32,123,97,11",benign,The attack-looking UNION/SELECT text is inside a LIKE string literal; it is searched as data and is never executed.
+MA0148,encoding_obf,SELECT * FROM users WHERE email = HEX(ASCII('john.doe@example.com'));,benign,This is a fixed encoded email lookup and contains no active injection construct.
+MA0160,stacked,SELECT * FROM users WHERE email = '[email@example.com]; UPDATE payments SET amount = 0 WHERE id = 1 --',benign,"The apparent '; UPDATE ... --' text is inside the quoted email string, so no stacked UPDATE statement executes."
+MA0197,file_os,SELECT GROUP_CONCAT(token SEPARATOR ' ') FROM sessions UNION ALL SELECT PASSWORD('/etc/secret.txt');,benign,PASSWORD('/etc/secret.txt') hashes the literal path string; it does not read the file or invoke the operating system.
+MA0198,file_os,"SELECT GROUP_CONCAT(email SEPARATOR '\n') INTO @data FROM users WHERE email LIKE '%union select LOAD_FILE(""/etc/passwd"")%';",benign,The LOAD_FILE text appears only inside a LIKE string literal; the query searches email text and does not execute file access.

@@ -1,0 +1,13 @@
+detector,first,second,group,n_items,only_first,only_second,p_value,p_as_printed
+frontier,review_time,runtime_gatekeeper,malicious,135,4,8,0.387695,0.39
+frontier,review_time,runtime_gatekeeper,benign,66,0,4,0.125,0.125
+frontier,review_time,post_hoc,malicious,135,14,13,1,1.00
+frontier,review_time,post_hoc,benign,66,0,11,0.000976562,0.001
+frontier,runtime_gatekeeper,post_hoc,malicious,135,13,8,0.38331,0.38
+frontier,runtime_gatekeeper,post_hoc,benign,66,0,7,0.015625,0.016
+small,review_time,runtime_gatekeeper,malicious,135,0,36,2.91038e-11,<0.0001
+small,review_time,runtime_gatekeeper,benign,66,1,10,0.0117188,0.012
+small,review_time,post_hoc,malicious,135,20,20,1,1.00
+small,review_time,post_hoc,benign,66,0,5,0.0625,0.063
+small,runtime_gatekeeper,post_hoc,malicious,135,43,7,2.09868e-07,<0.0001
+small,runtime_gatekeeper,post_hoc,benign,66,5,1,0.21875,0.219

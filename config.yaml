@@ -1,0 +1,38 @@
+# Settings used for the reported runs of "Position Matters: Evaluating Large
+# Language Models as SQL Injection Detectors Across Deployment Positions"
+# (IEEE BigData 2026). The scripts in scripts/ read this file.
+
+models:
+  generator:
+    provider: huggingface
+    model_id: mistralai/Mistral-7B-Instruct-v0.3
+    revision: c170c708c41dac9275d15a8fff4eca08d52bab71
+  detector_frontier:
+    provider: openai
+    model_id: gpt-5.6-terra        # the provider exposes no dated snapshot; all runs were on 8 August 2026
+  detector_small:
+    provider: huggingface
+    model_id: Qwen/Qwen2.5-7B-Instruct
+    revision: a09a35458c702b33eeacc393d103063234e8bc28
+
+generation:                        # scripts/generate_candidates.py
+  seed: 42
+  temperature: 0.8                 # nucleus sampling for variety
+  top_p: 0.95
+  max_new_tokens: 120
+  candidates_per_family: 25        # eight families, 200 candidates
+  max_attempts_per_family: 150
+
+detection:                         # scripts/run_detection.py
+  repeats: 3                       # each item is judged three times per position
+  posthoc_batch_size: 10
+  local_max_new_tokens:            # output limit for the local model; the API requests set none
+    review_time: 256
+    runtime_gatekeeper: 8
+    post_hoc: 128
+
+budget:
+  usd_cap: 30                      # the per-item positions stop if the running API cost estimate reaches this
+  price_per_1k_tokens:             # launch list price of the frontier model: $2.50 / $15 per million tokens
+    input: 0.0025
+    output: 0.015
