@@ -17,6 +17,14 @@ authors:
 version: 1.0.0
 license: MIT
 repository-code: "https://github.com/msaqer/position-matters-sqli"
+doi: 10.5281/zenodo.24265893
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.24265893
+    description: Concept DOI for all versions; resolves to the latest version
+  - type: doi
+    value: 10.5281/zenodo.24265894
+    description: Version 1.0.0, the release that matches the paper
 keywords:
   - SQL injection
   - large language models
