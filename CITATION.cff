@@ -2,14 +2,20 @@ cff-version: 1.2.0
 message: "If you use this code or data, please cite the paper listed under preferred-citation."
 type: software
 title: "Code and data for Position Matters: Evaluating Large Language Models as SQL Injection Detectors Across Deployment Positions"
+abstract: >-
+  Corpus, run logs, and code for the IEEE BigData 2026 paper "Position Matters:
+  Evaluating Large Language Models as SQL Injection Detectors Across Deployment
+  Positions". Two LLM detectors, a frontier API model and a locally hosted 7B
+  model, judged 213 items at three deployment positions (review-time, runtime
+  gatekeeper, and post-hoc), giving 3,834 logged verdicts. The code is under the
+  MIT License; the data, run logs, and tables are under CC BY 4.0 (see LICENSE-DATA).
 authors:
   - family-names: Abusaqer
     given-names: Muhammad
     affiliation: Minot State University
+    orcid: "https://orcid.org/0009-0000-9705-0829"
 version: 1.0.0
-license:
-  - MIT
-  - CC-BY-4.0
+license: MIT
 repository-code: "https://github.com/msaqer/position-matters-sqli"
 keywords:
   - SQL injection
@@ -24,6 +30,7 @@ preferred-citation:
     - family-names: Abusaqer
       given-names: Muhammad
       affiliation: Minot State University
+      orcid: "https://orcid.org/0009-0000-9705-0829"
   collection-title: "2026 IEEE International Conference on Big Data (BigData)"
   conference:
     name: "2026 IEEE International Conference on Big Data (BigData)"
