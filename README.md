@@ -1,5 +1,7 @@
 # Position Matters: LLMs as SQL Injection Detectors Across Deployment Positions
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24265893.svg)](https://doi.org/10.5281/zenodo.24265893)
+
 Code, data, and run logs for the paper:
 
 M. Abusaqer, "Position Matters: Evaluating Large Language Models as SQL Injection Detectors Across Deployment Positions," 2026 IEEE International Conference on Big Data (BigData), Phoenix, AZ, USA, December 2026 (to appear).
@@ -96,6 +98,8 @@ The corpus contains SQL injection attack strings and prompt-injection payloads f
   note      = {To appear}
 }
 ```
+
+The code, data, and run logs are archived on Zenodo. Version 1.0.0, the release that matches the paper, has the DOI [10.5281/zenodo.24265894](https://doi.org/10.5281/zenodo.24265894). The DOI [10.5281/zenodo.24265893](https://doi.org/10.5281/zenodo.24265893) covers all versions and always resolves to the latest one.
 
 GitHub's "Cite this repository" link reads the same information from `CITATION.cff`.
 
